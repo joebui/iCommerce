@@ -6,13 +6,12 @@ jobs:
   linting-formatting-check:
     runs-on: ubuntu-latest
     steps:
-      steps:
-        - name: Install packages
-          uses: docker://node:alpine3.10
-          run: yarn
-        - name: ESLint check
-          uses: docker://node:alpine3.10
-          run: yarn lint
-        - name: Prettier check
-          uses: docker://node:alpine3.10
-          run: yarn format
+      - name: Install packages
+        uses: docker://node:alpine3.10
+        run: yarn
+      - name: ESLint check
+        uses: docker://node:alpine3.10
+        run: yarn lint
+      - name: Prettier check
+        uses: docker://node:alpine3.10
+        run: yarn format
