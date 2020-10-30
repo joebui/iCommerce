@@ -1,13 +1,12 @@
 version: '3.7'
 services:
   product-service:
-    command: yarn dev
+    command: sh -c "yarn && yarn dev"
     image: icommerce-product-service
     container_name: icommerce-product-service
     stdin_open: true
     tty: true
     environment:
-      DEBUG: '*'
       NODE_ENV: development
       TERM: xterm-256color
       EXPRESS_PORT: 5000

@@ -11,13 +11,15 @@ module.exports = class ProductService {
       order,
     };
 
-    if (categoryId) condition.include = {
-      model: this.Category,
-      where: {
-        id: categoryId,
-      },
+    if (categoryId) {
+      condition.include = {
+        model: this.Category,
+        where: {
+          id: categoryId,
+        },
+      };
     }
 
     return this.Product.findAll(condition);
   }
-}
+};

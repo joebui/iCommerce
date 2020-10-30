@@ -1,34 +1,32 @@
-'use strict';
-
 module.exports = {
-  up: async (queryInterface, Sequelize) => {
+  up: async (queryInterface) => {
     await queryInterface.bulkInsert(
-      'categories',
+      "categories",
       [
         {
           id: 1,
-          name: 'Smartphone',
+          name: "Smartphone",
           createdAt: new Date(),
-          updatedAt: new Date()
+          updatedAt: new Date(),
         },
         {
           id: 2,
-          name: 'CPU',
+          name: "CPU",
           createdAt: new Date(),
-          updatedAt: new Date()
+          updatedAt: new Date(),
         },
         {
           id: 3,
-          name: 'Graphic card',
+          name: "Graphic card",
           createdAt: new Date(),
-          updatedAt: new Date()
-        }
+          updatedAt: new Date(),
+        },
       ],
-      {},
+      {}
     );
   },
 
-  down: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkDelete('categories', null, {});
-  }
+  down: async (queryInterface) => {
+    await queryInterface.bulkDelete("categories", null, {});
+  },
 };

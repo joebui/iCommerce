@@ -1,8 +1,8 @@
-const { GraphQLScalarType } = require('graphql');
-const moment = require('moment');
+const { GraphQLScalarType } = require("graphql");
+const moment = require("moment");
 
 module.exports = new GraphQLScalarType({
-  name: 'DateTime',
+  name: "DateTime",
   parseValue(value) {
     return new Date(value);
   },

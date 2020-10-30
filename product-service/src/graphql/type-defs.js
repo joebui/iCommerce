@@ -1,7 +1,7 @@
-const { gql } = require('apollo-server-express');
+const { gql } = require("apollo-server-express");
 
-const types = require('./types');
-const querySchema = require('./query-schema');
+const types = require("./types");
+const querySchema = require("./query-schema");
 
 module.exports = gql`
   ${types}
