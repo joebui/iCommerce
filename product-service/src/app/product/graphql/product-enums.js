@@ -7,4 +7,11 @@ module.exports = gql`
     CREATED_DATE_ASC
     CREATED_DATE_DESC
   }
+
+  enum ProductPageSizes {
+    FIVE
+    TEN
+    FIFTHTEEN
+    TWENTY
+  }
 `;

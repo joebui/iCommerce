@@ -4,7 +4,7 @@ module.exports = gql`
   extend type Query {
     products(
       page: Int!
-      perPage: Int!
+      perPage: ProductPageSizes!
       categoryId: Int
       sortBy: ProductSortByTypes
     ): [Product]
