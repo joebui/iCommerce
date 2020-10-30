@@ -4,6 +4,6 @@ module.exports = class CategoryDb {
   }
 
   getCategoryById(categoryId) {
-    return this.Category.findOne({ where: { id: categoryId } })
+    return this.Category.findOne({ where: { id: categoryId } });
   }
 };

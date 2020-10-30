@@ -9,7 +9,7 @@ module.exports = (app) => {
     typeDefs,
     resolvers,
     tracing: true,
-    context: context => context,
+    context: (context) => context,
     playground: {
       settings: {
         "schema.polling.enable": false,

@@ -1,5 +1,5 @@
 const helmet = require("helmet");
-const useragent = require('express-useragent');
+const useragent = require("express-useragent");
 
 module.exports = (app) => {
   app.use(useragent.express());
