@@ -3,8 +3,8 @@ module.exports = class ProductService {
     this.productDb = productDb;
   }
 
-  getProducts(page, perPage, sortBy) {
-    return this.productDb.products(page, perPage, this.getDbOrderType(sortBy));
+  getProducts(page, perPage, sortBy, categoryId) {
+    return this.productDb.products(page, perPage, this.getDbOrderType(sortBy), categoryId);
   }
 
   getDbOrderType(sortBy) {

@@ -7,6 +7,7 @@ const ProductDb = require('./product-db')
 const container = createContainer();
 container.register({
   Product: asValue(db.product),
+  Category: asValue(db.category),
   productService: asClass(ProductService),
   productDb: asClass(ProductDb)
 });
