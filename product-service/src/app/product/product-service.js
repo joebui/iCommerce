@@ -9,6 +9,10 @@ module.exports = class ProductService {
 
   getDbOrderType(sortBy) {
     switch (sortBy) {
+      case 'NAME_ASC':
+        return [['name', 'ASC']]
+      case 'NAME_DESC':
+        return [['name', 'DESC']]
       case 'PRICE_ASC':
         return [['price', 'ASC']]
       case 'PRICE_DESC':
@@ -18,7 +22,7 @@ module.exports = class ProductService {
       case 'CREATED_DATE_DESC':
         return [['createdAt', 'DESC']]
       default:
-        return [['createdAt', 'DESC']]
+        return [['name', 'ASC']]
     }
   }
 }
