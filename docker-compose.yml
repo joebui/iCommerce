@@ -1,0 +1,34 @@
+version: '3.7'
+services:
+  product-service:
+    command: yarn dev
+    image: icommerce-product-service
+    container_name: icommerce-product-service
+    stdin_open: true
+    tty: true
+    environment:
+      DEBUG: '*'
+      NODE_ENV: development
+      TERM: xterm-256color
+      EXPRESS_PORT: 5000
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB_NAME: icommerce
+      POSTGRES_HOST: product-service-postgres
+    links:
+      - product-service-postgres
+    ports:
+      - 5000:5000
+      - 9229:9229
+    volumes:
+      - ./product-service:/product-service
+    build:
+      context: product-service
+  product-service-postgres:
+    image: postgres:13.0-alpine
+    environment:
+      POSTGRES_PASSWORD: 'root'
+      POSTGRES_DB: 'icommerce'
+    ports:
+      - 5432:5432
+    container_name: icommerce-product-service-postgres
