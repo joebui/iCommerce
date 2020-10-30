@@ -7,6 +7,7 @@ module.exports = gql`
       perPage: ProductPageSizes!
       categoryId: Int
       sortBy: ProductSortByTypes
+      nameTerm: String
     ): [Product]
   }
 `;

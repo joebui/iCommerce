@@ -8,6 +8,7 @@ const container = createContainer();
 container.register({
   Product: asValue(db.product),
   Category: asValue(db.category),
+  Sequelize: asValue(db.Sequelize),
   productService: asClass(ProductService),
   productDb: asClass(ProductDb),
 });

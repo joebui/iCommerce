@@ -3,12 +3,13 @@ module.exports = class ProductService {
     this.productDb = productDb;
   }
 
-  getProducts(page, perPage, sortBy, categoryId) {
+  getProducts(page, perPage, sortBy, categoryId, nameTerm) {
     return this.productDb.products(
       page,
       perPage,
       ProductService.getDbOrderType(sortBy),
-      categoryId
+      categoryId,
+      nameTerm
     );
   }
 
