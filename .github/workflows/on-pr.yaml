@@ -5,13 +5,15 @@ on: pull_request
 jobs:
   linting-formatting-check:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: 12.x
     steps:
-      - name: Install packages
-        uses: docker://node:alpine3.10
-        run: yarn
-      - name: ESLint check
-        uses: docker://node:alpine3.10
-        run: yarn lint
-      - name: Prettier check
-        uses: docker://node:alpine3.10
-        run: yarn format
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: yarn
+      - run: yarn lint
+      - run: yarn format
