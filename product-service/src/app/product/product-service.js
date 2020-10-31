@@ -1,6 +1,9 @@
 module.exports = class ProductService {
-  constructor({ productDb }) {
+  constructor({ productDb, amqp, logger, USER_ACTIVITY }) {
     this.productDb = productDb;
+    this.amqp = amqp;
+    this.logger = logger;
+    this.USER_ACTIVITY = USER_ACTIVITY;
   }
 
   getProducts(page, perPage, sortBy, categoryId, nameTerm) {
@@ -10,6 +13,31 @@ module.exports = class ProductService {
       ProductService.getDbOrderType(sortBy),
       categoryId,
       nameTerm
+    );
+  }
+
+  publishUserActivity(userAgent, queryParams, clientIp) {
+    this.amqp.connect(
+      `amqp://${process.env.RABBITMQ_HOST}`,
+      (err, connection) => {
+        if (err) this.handleActivityPublishError(err);
+
+        connection.createChannel((error, channel) => {
+          if (error) this.handleActivityPublishError(err);
+          channel.assertExchange(this.USER_ACTIVITY, "fanout", {
+            durable: false,
+          });
+          channel.publish(
+            this.USER_ACTIVITY,
+            "",
+            Buffer.from(JSON.stringify({ userAgent, queryParams, clientIp }))
+          );
+        });
+
+        setTimeout(() => {
+          connection.close();
+        }, 500);
+      }
     );
   }
 
@@ -30,5 +58,11 @@ module.exports = class ProductService {
       default:
         return [["name", "ASC"]];
     }
+  }
+
+  handleActivityPublishError(err) {
+    const error = new Error(err);
+    this.logger.error({ message: error.message, stacktrace: error.stack });
+    throw error;
   }
 };

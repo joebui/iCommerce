@@ -5,4 +5,5 @@ module.exports = {
     FIFTHTEEN: 15,
     TWENTY: 20,
   },
+  USER_ACTIVITY: "USER_ACTIVITY",
 };

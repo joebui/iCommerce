@@ -21,3 +21,21 @@ jobs:
       - run: cd product-service && yarn
       - run: cd product-service && yarn lint
       - run: cd product-service && yarn format
+  user-activity-service-check:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - run: cd user-activity-service && yarn
+      - run: cd user-activity-service && yarn lint
+      - run: cd user-activity-service && yarn format
