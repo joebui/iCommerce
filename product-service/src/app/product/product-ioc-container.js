@@ -1,8 +1,8 @@
 const { createContainer, asClass, asValue } = require("awilix");
-const amqp = require('amqplib/callback_api');
+const amqp = require("amqplib/callback_api");
 
 const db = require("../../../db/models");
-const { USER_ACTIVITY } = require('./constants')
+const { USER_ACTIVITY } = require("./constants");
 const ProductService = require("./product-service");
 const ProductDb = require("./product-db");
 const logger = require("../../../utils/custom-stdout-logging");

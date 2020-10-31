@@ -1,33 +1,32 @@
-'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('activities', {
+    await queryInterface.createTable("activities", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       userAgent: {
-        type: Sequelize.JSONB
+        type: Sequelize.JSONB,
       },
       queryParams: {
-        type: Sequelize.JSONB
+        type: Sequelize.JSONB,
       },
       clientIp: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
-  down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('activities');
-  }
+  down: async (queryInterface) => {
+    await queryInterface.dropTable("activities");
+  },
 };

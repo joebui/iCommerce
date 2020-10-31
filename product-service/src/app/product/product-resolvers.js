@@ -1,7 +1,11 @@
-const { cradle } = require('./product-ioc-container');
+const { cradle } = require("./product-ioc-container");
 
 module.exports = {
-  products: (_parent, { page, perPage, categoryId, sortBy, nameTerm }, { req }) => {
+  products: (
+    _parent,
+    { page, perPage, categoryId, sortBy, nameTerm },
+    { req }
+  ) => {
     cradle.productService.publishUserActivity(
       req.useragent,
       {
@@ -11,8 +15,14 @@ module.exports = {
         sortBy,
         nameTerm,
       },
-      req.headers['x-real-ip'],
+      req.headers["x-real-ip"]
     );
-    return cradle.productService.getProducts(page, perPage, sortBy, categoryId, nameTerm);
+    return cradle.productService.getProducts(
+      page,
+      perPage,
+      sortBy,
+      categoryId,
+      nameTerm
+    );
   },
 };

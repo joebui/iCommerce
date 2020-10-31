@@ -17,19 +17,28 @@ module.exports = class ProductService {
   }
 
   publishUserActivity(userAgent, queryParams, clientIp) {
-    this.amqp.connect(`amqp://${process.env.RABBITMQ_HOST}`, (err, connection) => {
-      if (err) this.handleActivityPublishError(err);
+    this.amqp.connect(
+      `amqp://${process.env.RABBITMQ_HOST}`,
+      (err, connection) => {
+        if (err) this.handleActivityPublishError(err);
 
-      connection.createChannel((error, channel) => {
-        if (error) this.handleActivityPublishError(err);
-        channel.assertExchange(this.USER_ACTIVITY, 'fanout', { durable: false });
-        channel.publish(this.USER_ACTIVITY, '', Buffer.from(JSON.stringify({ userAgent, queryParams, clientIp })));
-      });
+        connection.createChannel((error, channel) => {
+          if (error) this.handleActivityPublishError(err);
+          channel.assertExchange(this.USER_ACTIVITY, "fanout", {
+            durable: false,
+          });
+          channel.publish(
+            this.USER_ACTIVITY,
+            "",
+            Buffer.from(JSON.stringify({ userAgent, queryParams, clientIp }))
+          );
+        });
 
-      setTimeout(() => {
-        connection.close();
-      }, 500);
-    });
+        setTimeout(() => {
+          connection.close();
+        }, 500);
+      }
+    );
   }
 
   static getDbOrderType(sortBy) {
@@ -52,7 +61,7 @@ module.exports = class ProductService {
   }
 
   handleActivityPublishError(err) {
-    const error = new Error(err)
+    const error = new Error(err);
     this.logger.error({ message: error.message, stacktrace: error.stack });
     throw error;
   }

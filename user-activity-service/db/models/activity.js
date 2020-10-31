@@ -1,7 +1,4 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
   class activity extends Model {
@@ -10,17 +7,20 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
+    static associate() {
       // define association here
     }
-  };
-  activity.init({
-    userAgent: DataTypes.JSONB,
-    queryParams: DataTypes.JSONB,
-    clientIp: DataTypes.STRING,
-  }, {
-    sequelize,
-    modelName: 'activity',
-  });
+  }
+  activity.init(
+    {
+      userAgent: DataTypes.JSONB,
+      queryParams: DataTypes.JSONB,
+      clientIp: DataTypes.STRING,
+    },
+    {
+      sequelize,
+      modelName: "activity",
+    }
+  );
   return activity;
 };
