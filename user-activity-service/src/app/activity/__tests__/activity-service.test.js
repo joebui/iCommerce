@@ -5,7 +5,11 @@ const ActivityService = require("../activity-service");
 describe("Activity service", () => {
   describe("#insertActivity", () => {
     const activityDb = {
-      insertActivity: jest.fn((userAgent, queryParams, clientIp) => ({ userAgent, queryParams, clientIp })),
+      insertActivity: jest.fn((userAgent, queryParams, clientIp) => ({
+        userAgent,
+        queryParams,
+        clientIp,
+      })),
     };
     const activityService = new ActivityService({ activityDb });
 
@@ -15,7 +19,11 @@ describe("Activity service", () => {
       const clientIp = faker.random.word();
       const data = JSON.stringify({ userAgent, queryParams, clientIp: null });
 
-      expect(activityService.insertActivity(data)).toStrictEqual({ userAgent, queryParams, clientIp });
+      expect(activityService.insertActivity(data)).toStrictEqual({
+        userAgent,
+        queryParams,
+        clientIp,
+      });
       expect(activityDb.insertActivity).toHaveBeenCalled();
     });
   });

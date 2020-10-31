@@ -13,8 +13,10 @@ describe("Activity db", () => {
       const userAgent = faker.random.objectElement();
       const queryParams = faker.random.objectElement();
       const clientIp = faker.random.word();
-      
-      expect(activityDb.insertActivity(userAgent, queryParams, clientIp)).toStrictEqual({ userAgent, queryParams, clientIp });
+
+      expect(
+        activityDb.insertActivity(userAgent, queryParams, clientIp)
+      ).toStrictEqual({ userAgent, queryParams, clientIp });
       expect(Activity.create).toHaveBeenCalled();
     });
   });
