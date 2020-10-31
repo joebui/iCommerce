@@ -5,7 +5,7 @@ const ProductService = require("../product-service");
 describe("Product service", () => {
   const USER_ACTIVITY = faker.random.word();
 
-  describe("#getProducts", () => {
+  describe("#products", () => {
     test("should return a Promise", () => {
       const productDb = {
         products: jest.fn().mockReturnValue(new Promise(() => {})),
@@ -18,7 +18,7 @@ describe("Product service", () => {
         logger,
         USER_ACTIVITY,
       });
-      const products = productService.getProducts();
+      const products = productService.products();
 
       expect(productDb.products).toHaveBeenCalled();
       expect(products instanceof Promise).toBeTruthy();

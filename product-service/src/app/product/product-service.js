@@ -6,7 +6,7 @@ module.exports = class ProductService {
     this.USER_ACTIVITY = USER_ACTIVITY;
   }
 
-  getProducts(page, perPage, sortBy, categoryId, nameTerm) {
+  products(page, perPage, sortBy, categoryId, nameTerm) {
     return this.productDb.products(
       page,
       perPage,
