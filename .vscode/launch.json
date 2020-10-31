@@ -1,0 +1,28 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "Product service",
+      "address": "127.0.0.1",
+      "port": 9229,
+      "localRoot": "${workspaceFolder}/product-service",
+      "remoteRoot": "/product-service",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "User activity service",
+      "address": "127.0.0.1",
+      "port": 9230,
+      "localRoot": "${workspaceFolder}/user-activity-service",
+      "remoteRoot": "/user-activity-service",
+      "skipFiles": ["<node_internals>/**"]
+    }
+  ]
+}
