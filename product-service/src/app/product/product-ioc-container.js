@@ -5,7 +5,7 @@ const db = require("../../../db/models");
 const { USER_ACTIVITY } = require("./constants");
 const ProductService = require("./product-service");
 const ProductDb = require("./product-db");
-const logger = require("../../../utils/custom-stdout-logging");
+const logger = require("../../../helpers/custom-stdout-logging");
 
 const container = createContainer();
 container.register({

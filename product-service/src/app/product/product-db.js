@@ -1,4 +1,4 @@
-module.exports = class ProductService {
+module.exports = class ProductDb {
   constructor({ Product, Category, Sequelize }) {
     this.Product = Product;
     this.Category = Category;

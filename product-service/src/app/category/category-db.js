@@ -3,7 +3,7 @@ module.exports = class CategoryDb {
     this.Category = Category;
   }
 
-  getCategoryById(categoryId) {
+  categoryById(categoryId) {
     return this.Category.findOne({ where: { id: categoryId } });
   }
 };
