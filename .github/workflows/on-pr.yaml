@@ -1,4 +1,4 @@
-name: Linting and formatting check
+name: Linting, formatting and unit test
 
 on: pull_request
 
