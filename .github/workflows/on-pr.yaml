@@ -1,4 +1,4 @@
-name: Linting and formatting check
+name: Linting, formatting and unit test
 
 on: pull_request
 
@@ -21,6 +21,7 @@ jobs:
       - run: cd product-service && yarn
       - run: cd product-service && yarn lint
       - run: cd product-service && yarn format
+      - run: cd product-service && yarn test
   user-activity-service-check:
     runs-on: ubuntu-latest
     strategy:
@@ -39,3 +40,4 @@ jobs:
       - run: cd user-activity-service && yarn
       - run: cd user-activity-service && yarn lint
       - run: cd user-activity-service && yarn format
+      - run: cd user-activity-service && yarn test

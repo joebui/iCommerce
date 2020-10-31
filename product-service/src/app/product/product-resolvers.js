@@ -17,7 +17,7 @@ module.exports = {
       },
       req.headers["x-real-ip"]
     );
-    return cradle.productService.getProducts(
+    return cradle.productService.products(
       page,
       perPage,
       sortBy,

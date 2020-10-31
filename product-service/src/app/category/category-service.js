@@ -3,7 +3,7 @@ module.exports = class CategoryService {
     this.categoryDb = categoryDb;
   }
 
-  getCategoryById(categoryId) {
-    return this.categoryDb.getCategoryById(categoryId);
+  categoryById(categoryId) {
+    return this.categoryDb.categoryById(categoryId);
   }
 };

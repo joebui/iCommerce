@@ -4,6 +4,6 @@ module.exports = class ActivityDb {
   }
 
   insertActivity(userAgent, queryParams, clientIp) {
-    this.Activity.create({ userAgent, queryParams, clientIp });
+    return this.Activity.create({ userAgent, queryParams, clientIp });
   }
 };

@@ -2,13 +2,12 @@ const { ApolloServer } = require("apollo-server-express");
 
 const typeDefs = require("../src/graphql/type-defs");
 const resolvers = require("../src/graphql/resolvers");
-const logger = require("../utils/custom-stdout-logging");
+const logger = require("../helpers/custom-stdout-logging");
 
 module.exports = (app) => {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    tracing: true,
     context: (context) => context,
     playground: {
       settings: {
