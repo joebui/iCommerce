@@ -8,7 +8,6 @@ module.exports = (app) => {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    tracing: true,
     context: (context) => context,
     playground: {
       settings: {
