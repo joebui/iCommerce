@@ -1,4 +1,12 @@
 version: '3.7'
+
+x-env-variables: &env-variables
+  NODE_ENV: development
+  TERM: xterm-256color
+  POSTGRES_USERNAME: postgres
+  POSTGRES_PASSWORD: root
+  RABBITMQ_HOST: rabbitmq
+
 services:
   product-service:
     command: sh -c "yarn && yarn dev"
@@ -7,15 +15,13 @@ services:
     stdin_open: true
     tty: true
     environment:
-      NODE_ENV: development
-      TERM: xterm-256color
+      <<: *env-variables
       EXPRESS_PORT: 5000
-      POSTGRES_USERNAME: postgres
-      POSTGRES_PASSWORD: root
       POSTGRES_DB_NAME: icommerce
       POSTGRES_HOST: product-service-postgres
     links:
       - product-service-postgres
+      - rabbitmq
     ports:
       - 5000:5000
       - 9229:9229
@@ -28,6 +34,32 @@ services:
     environment:
       POSTGRES_PASSWORD: 'root'
       POSTGRES_DB: 'icommerce'
-    ports:
-      - 5432:5432
     container_name: icommerce-product-service-postgres
+  rabbitmq:
+    image: rabbitmq:3.8.9-management-alpine
+    container_name: icommerce-rabbitmq
+    ports:
+      - 15672:15672
+  user-activity-service:
+    command: sh -c "yarn && yarn dev"
+    image: icommerce-user-activity-service
+    container_name: icommerce-user-activity-service
+    stdin_open: true
+    tty: true
+    environment:
+      <<: *env-variables
+      POSTGRES_DB_NAME: user-activities
+      POSTGRES_HOST: user-activity-service-postgres
+    links:
+      - user-activity-service-postgres
+      - rabbitmq
+    volumes:
+      - ./user-activity-service:/user-activity-service
+    build:
+      context: user-activity-service
+  user-activity-service-postgres:
+    image: postgres:13.0-alpine
+    environment:
+      POSTGRES_PASSWORD: 'root'
+      POSTGRES_DB: 'user-activities'
+    container_name: icommerce-user-activity-service-postgres

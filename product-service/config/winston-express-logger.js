@@ -6,13 +6,14 @@ module.exports = (app) => {
     expressWinston.logger({
       transports: [new transports.Console()],
       format: format.combine(
-        format.colorize(),
+        format.timestamp(),
         format.splat(),
-        format.simple()
+        format.simple(),
+        format.prettyPrint(),
       ),
       meta: true,
       expressFormat: true,
-      colorize: true,
+      colorize: false,
       statusLevels: true,
     })
   );
