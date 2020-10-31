@@ -31,6 +31,8 @@ services:
       context: product-service
   product-service-postgres:
     image: postgres:13.0-alpine
+    ports:
+      - 5432:5432
     environment:
       POSTGRES_PASSWORD: 'root'
       POSTGRES_DB: 'icommerce'
@@ -58,6 +60,8 @@ services:
       context: user-activity-service
   user-activity-service-postgres:
     image: postgres:13.0-alpine
+    ports:
+      - 5433:5432
     environment:
       POSTGRES_PASSWORD: 'root'
       POSTGRES_DB: 'user-activities'

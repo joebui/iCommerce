@@ -7,6 +7,7 @@ module.exports = {
     { req }
   ) => {
     cradle.productService.publishUserActivity(
+      "SHOW_PRODUCTS",
       req.useragent,
       {
         page,

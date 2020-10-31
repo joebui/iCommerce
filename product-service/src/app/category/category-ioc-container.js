@@ -7,8 +7,8 @@ const CategoryDb = require("./category-db");
 const container = createContainer();
 container.register({
   Category: asValue(db.category),
-  categoryService: asClass(CategoryService),
-  categoryDb: asClass(CategoryDb),
+  categoryService: asClass(CategoryService).singleton(),
+  categoryDb: asClass(CategoryDb).singleton(),
 });
 
 module.exports = container;
