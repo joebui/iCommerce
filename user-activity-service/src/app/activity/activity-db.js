@@ -3,7 +3,7 @@ module.exports = class ActivityDb {
     this.Activity = Activity;
   }
 
-  insertActivity(userAgent, queryParams, clientIp) {
-    return this.Activity.create({ userAgent, queryParams, clientIp });
+  insertActivity(action, userAgent, queryParams, clientIp) {
+    return this.Activity.create({ action, userAgent, queryParams, clientIp });
   }
 };

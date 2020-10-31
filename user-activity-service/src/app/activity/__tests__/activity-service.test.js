@@ -5,7 +5,8 @@ const ActivityService = require("../activity-service");
 describe("Activity service", () => {
   describe("#insertActivity", () => {
     const activityDb = {
-      insertActivity: jest.fn((userAgent, queryParams, clientIp) => ({
+      insertActivity: jest.fn((action, userAgent, queryParams, clientIp) => ({
+        action,
         userAgent,
         queryParams,
         clientIp,
@@ -14,12 +15,14 @@ describe("Activity service", () => {
     const activityService = new ActivityService({ activityDb });
 
     test("should create new activity record", () => {
+      const action = faker.random.word();
       const userAgent = faker.random.objectElement();
       const queryParams = faker.random.objectElement();
       const clientIp = faker.random.word();
-      const data = JSON.stringify({ userAgent, queryParams, clientIp });
+      const data = JSON.stringify({ action, userAgent, queryParams, clientIp });
 
       expect(activityService.insertActivity(data)).toStrictEqual({
+        action,
         userAgent,
         queryParams,
         clientIp,

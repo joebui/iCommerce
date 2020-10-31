@@ -16,7 +16,7 @@ module.exports = class ProductService {
     );
   }
 
-  publishUserActivity(userAgent, queryParams, clientIp) {
+  publishUserActivity(action, userAgent, queryParams, clientIp) {
     this.amqp.connect(
       `amqp://${process.env.RABBITMQ_HOST}`,
       (err, connection) => {
@@ -30,7 +30,9 @@ module.exports = class ProductService {
           channel.publish(
             this.USER_ACTIVITY,
             "",
-            Buffer.from(JSON.stringify({ userAgent, queryParams, clientIp }))
+            Buffer.from(
+              JSON.stringify({ action, userAgent, queryParams, clientIp })
+            )
           );
         });
 

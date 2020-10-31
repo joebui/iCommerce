@@ -7,6 +7,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+      action: {
+        type: Sequelize.STRING,
+      },
       userAgent: {
         type: Sequelize.JSONB,
       },
