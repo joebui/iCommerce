@@ -17,7 +17,7 @@ describe("Activity service", () => {
       const userAgent = faker.random.objectElement();
       const queryParams = faker.random.objectElement();
       const clientIp = faker.random.word();
-      const data = JSON.stringify({ userAgent, queryParams, clientIp: null });
+      const data = JSON.stringify({ userAgent, queryParams, clientIp });
 
       expect(activityService.insertActivity(data)).toStrictEqual({
         userAgent,
