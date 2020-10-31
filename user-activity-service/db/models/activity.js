@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
   activity.init({
     userAgent: DataTypes.JSONB,
     queryParams: DataTypes.JSONB,
+    clientIp: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'activity',

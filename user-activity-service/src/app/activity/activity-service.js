@@ -4,7 +4,7 @@ module.exports = class ActivityService {
   }
 
   insertActivity(data) {
-    const { userAgent, queryParams } = JSON.parse(data);
-    this.activityDb.insertActivity(userAgent, queryParams)
+    const { userAgent, queryParams, clientIp } = JSON.parse(data);
+    this.activityDb.insertActivity(userAgent, queryParams, clientIp)
   }
 }

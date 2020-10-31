@@ -16,14 +16,14 @@ module.exports = class ProductService {
     );
   }
 
-  publishUserActivity(userAgent, queryParams) {
+  publishUserActivity(userAgent, queryParams, clientIp) {
     this.amqp.connect(`amqp://${process.env.RABBITMQ_HOST}`, (err, connection) => {
       if (err) this.handleActivityPublishError(err);
 
       connection.createChannel((error, channel) => {
         if (error) this.handleActivityPublishError(err);
         channel.assertExchange(this.USER_ACTIVITY, 'fanout', { durable: false });
-        channel.publish(this.USER_ACTIVITY, '', Buffer.from(JSON.stringify({ userAgent, queryParams })));
+        channel.publish(this.USER_ACTIVITY, '', Buffer.from(JSON.stringify({ userAgent, queryParams, clientIp })));
       });
 
       setTimeout(() => {

@@ -14,6 +14,9 @@ module.exports = {
       queryParams: {
         type: Sequelize.JSONB
       },
+      clientIp: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

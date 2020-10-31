@@ -8,6 +8,7 @@ x-env-variables: &env-variables
   RABBITMQ_HOST: rabbitmq
 
 services:
+  ### Start Product service ###
   product-service:
     command: sh -c "yarn && yarn dev"
     image: icommerce-product-service
@@ -23,7 +24,6 @@ services:
       - product-service-postgres
       - rabbitmq
     ports:
-      - 5000:5000
       - 9229:9229
     volumes:
       - ./product-service:/product-service
@@ -35,11 +35,8 @@ services:
       POSTGRES_PASSWORD: 'root'
       POSTGRES_DB: 'icommerce'
     container_name: icommerce-product-service-postgres
-  rabbitmq:
-    image: rabbitmq:3.8.9-management-alpine
-    container_name: icommerce-rabbitmq
-    ports:
-      - 15672:15672
+  ### End Product service ###
+  ### Start user activity service ###
   user-activity-service:
     command: sh -c "yarn && yarn dev"
     image: icommerce-user-activity-service
@@ -53,6 +50,8 @@ services:
     links:
       - user-activity-service-postgres
       - rabbitmq
+    ports:
+      - 9230:9230
     volumes:
       - ./user-activity-service:/user-activity-service
     build:
@@ -63,3 +62,19 @@ services:
       POSTGRES_PASSWORD: 'root'
       POSTGRES_DB: 'user-activities'
     container_name: icommerce-user-activity-service-postgres
+  ### End user activity service ###
+  rabbitmq:
+    image: rabbitmq:3.8.9-management-alpine
+    container_name: icommerce-rabbitmq
+    ports:
+      - 15672:15672
+  nginx:
+    image: nginx:1.19.3
+    container_name: icommerce-nginx
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    ports:
+      - 8080:80
+    environment:
+      - NGINX_PORT=80
+
