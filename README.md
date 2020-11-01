@@ -6,6 +6,11 @@ Backend services for a simple ecommerce website using Node.js
 
 ![system architecture](./assets/system-architecture.svg)
 
+- `Nginx`: Web server to handle reverse proxy, data compression using gzip
+- `Product service` and its corresponding `PostgreSQL`: core service to process API requests to get product list
+- `User service` and its corresponding `PostgreSQL`: service to get user activity and record in the database
+- `RabbitMQ`: message broker for product service to publish event (user activity data) and for user activity service to subscribe to that event.
+
 ## Sequence diagram for an API request to show list of products
 
 ![sequence diagram](./assets/show-product-sequence-diagram.svg)
