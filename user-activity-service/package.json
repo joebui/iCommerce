@@ -4,7 +4,7 @@
   "description": "User activity service",
   "main": "index.js",
   "scripts": {
-    "dev": "DEBUG=* nodemon --inspect=0.0.0.0:9230 index.js",
+    "dev": "pm2-dev --inspect=0.0.0.0:9230 index.js",
     "lint": "eslint --cache --ext .js .",
     "lint:fix": "eslint --fix --cache --ext .js .",
     "format": "prettier **/* --check --ignore-unknown",

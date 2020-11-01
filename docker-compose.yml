@@ -75,6 +75,8 @@ services:
   nginx:
     image: nginx:1.19.3
     container_name: icommerce-nginx
+    links:
+      - product-service
     volumes:
       - ./nginx:/etc/nginx/conf.d
     ports:
