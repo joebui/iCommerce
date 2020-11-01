@@ -266,6 +266,7 @@ nginx
 - `jest`: Core unit test framework
 - `lint-staged`: Run linter commands on git staged files, which will be triggered by husky
 - `prettier`: Code formatting library
+- `nodemon` and `pm2 (pm2-dev)`: run backend service and automatically reload upon code change. `pm2-dev` can automatically retry upon failure, which is used for user activity service to retry until it can establish connection to RabbitMQ and it is ready on port `5672`
 
 ### Other non-javascript libraries and tools
 
