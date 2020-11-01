@@ -285,7 +285,7 @@ nginx
 
 ## CURL commands for testing APIs
 
-Note: you can use CURL commands below to test API. However, Apollo GraphQL has buitl-in visualized GraphQL playground and documentation web page by going to http://localhost:8080/graphql on your browser.
+Note: you can use CURL commands below to test API. However, Apollo GraphQL has built-in visualized GraphQL playground and documentation web page by going to http://localhost:8080/graphql on your browser.
 
 ```bash
 curl -X POST \
