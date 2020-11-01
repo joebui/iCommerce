@@ -12,7 +12,7 @@
     "sequelize": "sequelize",
     "db:migrate": "sequelize db:migrate",
     "db:seed": "sequelize db:seed:all",
-    "test": "jest",
+    "test": "jest --verbose",
     "test:cov": "jest --coverage"
   },
   "author": "joebui",
@@ -36,6 +36,7 @@
     "winston": "^3.3.3"
   },
   "devDependencies": {
+    "apollo-server-testing": "^2.19.0",
     "eslint": "^7.12.1",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-config-prettier": "^6.15.0",
