@@ -1,4 +1,4 @@
-const faker = require("faker");
+const { random, lorem } = require("faker");
 
 const ProductDb = require("../product-db");
 
@@ -6,7 +6,7 @@ describe("Product db", () => {
   describe("#products", () => {
     const Sequelize = {
       Op: {
-        iLike: faker.random.word(),
+        iLike: random.word(),
       },
     };
     const Product = {
@@ -16,9 +16,9 @@ describe("Product db", () => {
     const productDb = new ProductDb({ Product, Category, Sequelize });
 
     test("should query with pagination and order", () => {
-      const page = faker.random.number();
-      const perPage = faker.random.number();
-      const order = faker.random.word();
+      const page = random.number();
+      const perPage = random.number();
+      const order = random.word();
       expect(productDb.products(page, perPage, order)).toStrictEqual({
         offset: (page - 1) * perPage,
         limit: perPage,
@@ -27,10 +27,10 @@ describe("Product db", () => {
       expect(Product.findAll).toHaveBeenCalled();
     });
     test("should query with pagination, order and category", () => {
-      const page = faker.random.number();
-      const perPage = faker.random.number();
-      const order = faker.random.word();
-      const categoryId = faker.random.number();
+      const page = random.number();
+      const perPage = random.number();
+      const order = random.word();
+      const categoryId = random.number();
       expect(
         productDb.products(page, perPage, order, categoryId)
       ).toStrictEqual({
@@ -46,11 +46,11 @@ describe("Product db", () => {
       });
     });
     test("should query with pagination, order, category and name term", () => {
-      const page = faker.random.number();
-      const perPage = faker.random.number();
-      const order = faker.random.word();
-      const categoryId = faker.random.number();
-      const nameTerm = faker.lorem.word();
+      const page = random.number();
+      const perPage = random.number();
+      const order = random.word();
+      const categoryId = random.number();
+      const nameTerm = lorem.word();
       expect(
         productDb.products(page, perPage, order, categoryId, nameTerm)
       ).toStrictEqual({

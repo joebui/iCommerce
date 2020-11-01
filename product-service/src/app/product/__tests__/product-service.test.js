@@ -1,9 +1,9 @@
-const faker = require("faker");
+const { random, lorem } = require("faker");
 
 const ProductService = require("../product-service");
 
 describe("Product service", () => {
-  const USER_ACTIVITY = faker.random.word();
+  const USER_ACTIVITY = random.word();
 
   describe("#products", () => {
     test("should return a Promise", () => {
@@ -57,7 +57,7 @@ describe("Product service", () => {
       ]);
     });
     test("should return name (ascending) sort mode by default", () => {
-      expect(ProductService.getDbOrderType(faker.lorem.word())).toStrictEqual([
+      expect(ProductService.getDbOrderType(lorem.word())).toStrictEqual([
         ["name", "ASC"],
       ]);
     });
@@ -78,7 +78,7 @@ describe("Product service", () => {
 
     test("should throw and log error", () => {
       expect(() => {
-        productService.handleActivityPublishError(faker.lorem.word());
+        productService.handleActivityPublishError(lorem.word());
       }).toThrow();
       expect(logger.error).toHaveBeenCalled();
     });
