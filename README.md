@@ -356,3 +356,10 @@ curl -X POST \
   -d '{ "query": "{ products(page: 1, perPage: FIFTHTEEN, nameTerm: \"ryzen\") { id name price createdAt updatedAt category { id name createdAt updatedAt } } }" }' \
   http://localhost:8080/graphql | json_pp
 ```
+
+```bash
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -d '{ "query": "{ products(page: 1, perPage: FIVE, nameTerm: \"some random string\") { id name price createdAt updatedAt category { id name createdAt updatedAt } } }" }' \
+  http://localhost:8080/graphql | json_pp
+```
