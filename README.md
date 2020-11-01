@@ -58,7 +58,7 @@ Backend services for a simple ecommerce website using Node.js
 
 ### Use environment variable to hold changeable and sensitive data
 
-- Data such as configurations for database access, URLs to 3rd party service or AWS's access/secret key needs to be isolated from the main codebase as it can result in possible sensitive data leak
+- Data such as configurations for database access, URLs to 3rd party service or AWS's access/secret key needs to be isolated from the main codebase to prevent data leak
 - Data depending on deployment environment needs to use environment variable to create flexibility and avoid hardcode
 
 ## Code folder structure
