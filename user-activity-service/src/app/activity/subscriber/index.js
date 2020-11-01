@@ -1,7 +1,7 @@
 const amqp = require("amqplib/callback_api");
 
-const { USER_ACTIVITY } = require("../../../../utils/constants");
-const logger = require("../../../../utils/custom-stdout-logging");
+const { USER_ACTIVITY } = require("../../../../constants");
+const logger = require("../../../../helpers/custom-stdout-logging");
 const { cradle } = require("../activity-ioc-container");
 
 const handleActivitySubscribeError = (err) => {
