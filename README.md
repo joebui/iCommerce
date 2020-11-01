@@ -56,6 +56,11 @@ Backend services for a simple ecommerce website using Node.js
 - To ensure consistent code styling and check code errors, ESLint and Prettier are integrated to support developers with commands to help check and auto-correct code
 - Link with Git hook to trigger those commands on changed files prior to `git commit`
 
+### Use environment variable to hold changeable and sensitive data
+
+- Data such as configurations for database access, URLs to 3rd party service or AWS's access/secret key needs to be isolated from the main codebase as it can result in possible sensitive data leak
+- Data depending on deployment environment needs to use environment variable to create flexibility and avoid hardcode
+
 ## Code folder structure
 
 ### product-service
@@ -259,10 +264,10 @@ nginx
 
 ### Other non-javascript libraries and tools
 
-- Docker: containerization platform to run code in isolated environment and ensure consistency across machines.
-- Nginx: Web server acting as reverse proxy and to modify HTTP request/response such as compressing response data
-- PostgreSQL: Core relational database
-- RabbitMQ: message broker using supporting AMQP to support communication between microservices
+- `Docker`: containerization platform to run code in isolated environment and ensure consistency across machines.
+- `Nginx`: Web server acting as reverse proxy and to modify HTTP request/response such as compressing response data
+- `PostgreSQL`: Core relational database
+- `RabbitMQ`: message broker using supporting AMQP to support communication between microservices
 
 ## Setup development environment
 
